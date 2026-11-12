@@ -1,0 +1,47 @@
+# Super Video Maker Skill - Installation & Directives
+
+### 1. Installation Options
+
+#### Option A: Recommended — 1-Click via AIStoreHub CLI (`aihub`)
+```bash
+# 1. Install the aihub CLI via pip
+pip install aistorehub
+
+# 2. Pull package bundle into current directory
+aihub pull @community/catalog/super-video-maker-skill
+
+# 3. Install Python & Node video processing dependencies
+pip install openai-whisper yt-dlp ffmpeg-python moviepy torch
+npm install -g @hyperframes/cli remotion
+
+# 4. Run pipeline diagnostics or task prompt
+aihub run @community/catalog/super-video-maker-skill
+```
+
+#### Option B: Direct Git Clone & Standard Python (No `aihub` CLI needed)
+```bash
+# 1. Clone repository directly
+git clone https://github.com/Bomx/super-video-maker-skill.git
+cd super-video-maker-skill
+
+# 2. Install dependencies via pip & npm
+pip install -r requirements.txt
+npm install -g @hyperframes/cli remotion
+
+# 3. Run diagnostic check
+python cli.py
+```
+
+#### Option C: AI Agent IDEs (Claude Code & Cursor)
+```bash
+# Pass prompts directly to the skill runner:
+aihub run @community/catalog/super-video-maker-skill --input "Create a 30s kinetic typography explainer with burnt-in captions"
+```
+
+---
+
+### 2. Video-as-Code Workflow
+1. **Layout & Animation**: HyperFrames & Remotion (`remotion preview src/index.ts`).
+2. **Audio Transcription & Subtitles**: Whisper (`whisper audio.wav --model base --output_format srt`).
+3. **Asset Ingestion**: yt-dlp (`yt-dlp -f bestvideo+bestaudio [URL]`).
+4. **Compositing & Final Encoding**: FFmpeg (`ffmpeg -i input.mp4 -vf subtitles=captions.srt output.mp4`).
